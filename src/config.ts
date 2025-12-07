@@ -12,7 +12,9 @@ export const SITE = {
   showArchives: true,
   showBackButton: true,
   editPost: {
-    enabled: false
+    enabled: false,
+    url: "",
+    text: "Edit this page"
   },
   dynamicOgImage: true,
   lang: "en",
