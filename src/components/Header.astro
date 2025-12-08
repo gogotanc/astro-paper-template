@@ -1,5 +1,4 @@
 ---
-import Hr from "./Hr.astro";
 import IconX from "@/assets/icons/IconX.svg";
 import IconMoon from "@/assets/icons/IconMoon.svg";
 import IconSearch from "@/assets/icons/IconSearch.svg";
@@ -23,26 +22,25 @@ const isActive = (path: string) => {
 };
 ---
 
-<header class="neon-border scan-line">
+<header class="border-b border-border">
   <a
     id="skip-to-content"
     href="#main-content"
-    class="absolute -top-full left-16 z-50 bg-background px-3 py-2 text-accent backdrop-blur-lg transition-all focus:top-4"
+    class="absolute -top-full left-16 z-50 bg-background px-3 py-2 text-foreground transition-all focus:top-4"
   >
     Skip to content
   </a>
   <div
     id="nav-container"
-    class="mx-auto flex max-w-3xl flex-col items-center justify-between sm:flex-row"
+    class="mx-auto flex max-w-2xl flex-col items-center justify-between px-6 sm:flex-row"
   >
     <div
       id="top-nav-wrap"
-      class="relative flex w-full items-baseline justify-between bg-background p-4 sm:items-center sm:py-6"
+      class="relative flex w-full items-baseline justify-between py-4 sm:items-center sm:py-5"
     >
       <a
         href="/"
-        class="absolute py-1 text-2xl leading-7 font-semibold whitespace-nowrap sm:static cyberpunk-title"
-        data-text={SITE.title}
+        class="absolute py-1 text-xl font-medium tracking-tight whitespace-nowrap sm:static hover:opacity-70 transition-opacity"
       >
         {SITE.title}
       </a>
@@ -52,7 +50,7 @@ const isActive = (path: string) => {
       >
         <button
           id="menu-btn"
-          class="focus-outline self-end p-2 sm:hidden text-accent hover:text-accent-secondary"
+          class="self-end p-2 sm:hidden text-foreground hover:opacity-70 transition-opacity"
           aria-label="Open Menu"
           aria-expanded="false"
           aria-controls="menu-items"
@@ -64,24 +62,24 @@ const isActive = (path: string) => {
           id="menu-items"
           class:list={[
             "mt-4 grid w-44 grid-cols-2 place-content-center gap-2",
-            "[&>li>a]:block [&>li>a]:px-4 [&>li>a]:py-3 [&>li>a]:text-center [&>li>a]:font-medium [&>li>a]:hover:text-accent-secondary sm:[&>li>a]:px-2 sm:[&>li>a]:py-1",
+            "[&>li>a]:block [&>li>a]:px-4 [&>li>a]:py-3 [&>li>a]:text-center [&>li>a]:text-sm [&>li>a]:hover:opacity-70 sm:[&>li>a]:px-2 sm:[&>li>a]:py-1",
             "hidden",
             "sm:mt-0 sm:ml-0 sm:flex sm:w-auto sm:gap-x-5 sm:gap-y-0",
           ]}
         >
           <li class="col-span-2">
             <a href="/posts" class:list={{ "active-nav": isActive("/posts") }}>
-              <span class="glow-text">Posts</span>
+              Posts
             </a>
           </li>
           <li class="col-span-2">
             <a href="/tags" class:list={{ "active-nav": isActive("/tags") }}>
-              <span class="glow-text">Tags</span>
+              Tags
             </a>
           </li>
           <li class="col-span-2">
             <a href="/about" class:list={{ "active-nav": isActive("/about") }}>
-              <span class="glow-text">About</span>
+              About
             </a>
           </li>
           {
@@ -90,9 +88,9 @@ const isActive = (path: string) => {
                 <LinkButton
                   href="/archives"
                   class:list={[
-                    "focus-outline flex justify-center p-3 sm:p-1 text-accent hover:text-accent-secondary",
+                    "flex justify-center p-3 sm:p-1 text-foreground hover:opacity-70 transition-opacity",
                     {
-                      "active-nav [&>svg]:stroke-accent": isActive("/archives"),
+                      "active-nav": isActive("/archives"),
                     },
                   ]}
                   ariaLabel="archives"
@@ -108,8 +106,8 @@ const isActive = (path: string) => {
             <LinkButton
               href="/search"
               class:list={[
-                "focus-outline flex p-3 sm:p-1 text-accent hover:text-accent-secondary",
-                { "[&>svg]:stroke-accent": isActive("/search") },
+                "flex p-3 sm:p-1 text-foreground hover:opacity-70 transition-opacity",
+                { "opacity-70": isActive("/search") },
               ]}
               ariaLabel="search"
               title="Search"
@@ -123,7 +121,7 @@ const isActive = (path: string) => {
               <li class="col-span-1 flex items-center justify-center">
                 <button
                   id="theme-btn"
-                  class="focus-outline relative size-12 p-4 sm:size-8 text-accent hover:text-accent-secondary"
+                  class="relative size-12 p-4 sm:size-8 text-foreground hover:opacity-70 transition-opacity"
                   title="Toggles light & dark"
                   aria-label="auto"
                   aria-live="polite"
@@ -138,7 +136,6 @@ const isActive = (path: string) => {
       </nav>
     </div>
   </div>
-  <Hr />
 </header>
 
 <script>

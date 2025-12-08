@@ -2,91 +2,51 @@
 
 @layer base {
   .prose {
-    @apply prose-headings:!mb-3 prose-headings:!text-foreground prose-h3:italic prose-p:!text-foreground prose-a:!text-accent prose-a:!decoration-dashed prose-a:underline-offset-8 hover:prose-a:!text-accent-secondary prose-blockquote:!border-l-accent/50 prose-blockquote:opacity-80 prose-figcaption:!text-foreground prose-figcaption:opacity-70 prose-strong:!text-accent prose-code:rounded prose-code:bg-muted/75 prose-code:p-1 prose-code:!text-foreground prose-code:before:!content-none prose-code:after:!content-none prose-ol:!text-foreground prose-ul:overflow-x-clip prose-ul:!text-foreground prose-li:marker:!text-accent prose-table:text-foreground prose-th:border prose-th:border-border prose-td:border prose-td:border-border prose-img:mx-auto prose-img:!my-2 prose-img:border-2 prose-img:border-border prose-hr:!border-border;
-    /* Cyberpunk specific enhancements */
-  }
-  .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
-    @apply relative;
-    text-shadow: 0 0 5px rgba(255, 45, 109, 0.3);
+    @apply prose-headings:!mb-3 prose-headings:!text-foreground prose-p:!text-foreground prose-a:!text-foreground prose-a:underline prose-a:underline-offset-4 hover:prose-a:!text-accent-secondary prose-blockquote:!border-l-border prose-blockquote:!text-accent-secondary prose-figcaption:!text-accent-secondary prose-strong:!text-foreground prose-code:rounded prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:!text-foreground prose-code:before:!content-none prose-code:after:!content-none prose-ol:!text-foreground prose-ul:overflow-x-clip prose-ul:!text-foreground prose-li:marker:!text-accent-secondary prose-table:text-foreground prose-th:border prose-th:border-border prose-td:border prose-td:border-border prose-img:mx-auto prose-img:!my-4 prose-hr:!border-border;
   }
   .prose h1 {
-    @apply text-4xl font-bold;
-    background: linear-gradient(45deg, var(--color-accent), var(--color-accent-secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    @apply text-3xl font-semibold tracking-tight;
   }
   .prose h2 {
-    @apply text-3xl;
-    color: var(--color-accent-secondary);
+    @apply text-2xl font-semibold tracking-tight;
   }
   .prose h3 {
-    @apply text-2xl;
-    color: var(--color-accent);
+    @apply text-xl font-medium;
   }
   .prose a {
-    @apply break-words relative transition-all duration-300;
-    text-shadow: 0 0 5px currentColor;
-  }
-  .prose a:hover {
-    text-shadow: 0 0 10px currentColor;
+    @apply break-words transition-colors duration-200;
   }
   .prose blockquote {
-    @apply relative;
-    background: rgba(26, 26, 46, 0.5);
-    border-left: 3px solid var(--color-accent);
-    box-shadow: 
-      -5px 0 10px rgba(255, 45, 109, 0.2),
-      inset 0 0 10px rgba(255, 45, 109, 0.05);
+    @apply bg-muted/50 px-4 py-2 border-l-2;
   }
   .prose code {
-    @apply relative;
-    font-family: 'Courier New', monospace;
-    color: var(--color-accent-secondary);
-    box-shadow: 
-      0 0 5px rgba(0, 245, 255, 0.2),
-      inset 0 0 5px rgba(0, 245, 255, 0.05);
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.875em;
   }
   .prose pre {
-    @apply relative;
-    background: rgba(21, 21, 34, 0.9);
-    border: 1px solid var(--color-border);
-    box-shadow:
-      0 0 15px rgba(0, 245, 255, 0.2),
-      inset 0 0 15px rgba(0, 245, 255, 0.05);
-    padding-top: 1.5rem;
-    border-radius: 0.375rem;
+    @apply border border-border;
+    padding-top: 1rem;
+    border-radius: 0.5rem;
   }
   .prose table {
-    @apply relative;
-    border-collapse: separate;
-    border-spacing: 0;
-    background: rgba(26, 26, 46, 0.3);
+    border-collapse: collapse;
   }
   .prose th, .prose td {
-    @apply border border-border;
-    border-color: rgba(45, 45, 68, 0.7);
+    @apply border border-border px-3 py-2;
   }
   .prose th {
-    @apply bg-muted/50;
-    color: var(--color-accent-secondary);
+    @apply bg-muted font-medium;
   }
   .prose img {
-    @apply relative;
-    box-shadow: 0 0 15px rgba(138, 43, 226, 0.3);
-    border-color: var(--color-accent-secondary);
+    @apply rounded;
   }
   .prose hr {
-    @apply relative;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
-    border: none;
-    box-shadow: 0 0 5px var(--color-accent);
+    @apply border-border;
   }
   .prose thead th:first-child,
   tbody td:first-child,
   tfoot td:first-child {
-    padding-inline-start: 0.5714286em !important;
+    padding-inline-start: 0.75rem !important;
   }
   .prose h2#table-of-contents {
     @apply mb-2;
@@ -95,13 +55,12 @@
     @apply inline-block cursor-pointer text-foreground select-none;
   }
   .prose summary {
-    @apply focus-visible:no-underline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-accent focus-visible:outline-dashed;
+    @apply focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent;
   }
   .prose h2#table-of-contents + p {
     @apply hidden;
   }
 
-  /* ===== Code Blocks & Syntax Highlighting ===== */
   pre:has(code) {
     @apply border border-border;
   }
@@ -112,7 +71,6 @@
   }
 
   .prose table code {
-    /* add line breaks whenever necessary for codes under table */
     @apply break-all sm:break-normal;
   }
 
@@ -120,46 +78,60 @@
     white-space: pre;
   }
 
-  /* Apply Dark Theme (if multi-theme specified) */
-  html[data-theme="dark"] pre:has(code),
+  html[data-theme="dark"] pre:has(code) {
+    background-color: var(--shiki-dark-bg, var(--muted)) !important;
+  }
+  
   html[data-theme="dark"] pre:has(code) span {
     color: var(--shiki-dark) !important;
-    background-color: rgba(21, 21, 34, 0.9) !important;
     font-style: var(--shiki-dark-font-style) !important;
     font-weight: var(--shiki-dark-font-weight) !important;
     text-decoration: var(--shiki-dark-text-decoration) !important;
   }
   
-  /* Apply Light Theme (if multi-theme specified) */
-  html[data-theme="light"] pre:has(code),
+  html[data-theme="light"] pre:has(code) {
+    background-color: var(--shiki-light-bg, var(--muted)) !important;
+  }
+  
   html[data-theme="light"] pre:has(code) span {
     color: var(--shiki-light) !important;
-    background-color: rgba(21, 21, 34, 0.9) !important;
     font-style: var(--shiki-light-font-style) !important;
     font-weight: var(--shiki-light-font-weight) !important;
     text-decoration: var(--shiki-light-text-decoration) !important;
   }
   
-  /* Copy button styles */
+  pre {
+    position: relative !important;
+  }
+  
+  .prose pre {
+    padding-top: 1rem !important;
+  }
+
   .copy-code {
-    transition: all 0.2s ease;
-    opacity: 0.7;
+    position: absolute !important;
+    top: 0.5rem !important;
+    right: 0.5rem !important;
+    z-index: 10;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 500;
+    border-radius: 0.25rem;
+    border: 1px solid var(--border);
+    background-color: var(--background);
+    color: var(--accent-secondary);
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s ease;
   }
   
   .copy-code:hover {
+    color: var(--foreground);
+    background-color: var(--muted);
+  }
+  
+  pre:hover .copy-code {
     opacity: 1;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  }
-  
-  /* Ensure code blocks have enough padding for the copy button */
-  .prose pre {
-    position: relative;
-    padding-top: 3rem !important;
-  }
-  
-  /* Code block wrapper to ensure proper positioning */
-  .prose pre > div {
-    position: relative;
   }
 }
