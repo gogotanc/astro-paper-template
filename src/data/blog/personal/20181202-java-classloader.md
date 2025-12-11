@@ -10,7 +10,7 @@ tags:
   - Java
   - Classloader
 description:
-  深入理解 Java 的类加载机制，包括内置类加载器、双亲委托机制及线程上下文类加载器。
+  全面解析 Java 类加载机制的核心原理，从 BootstrapClassLoader 到双亲委托模型，再到线程上下文类加载器的实战应用。助你深入理解 JVM 内存管理和类隔离机制。
 
 ---
 

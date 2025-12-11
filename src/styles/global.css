@@ -5,25 +5,38 @@
 
 :root,
 html[data-theme="light"] {
-  --background: #0a0a0f;
-  --foreground: #e0e0ff;
-  --accent: #ff2d6d;
-  --accent-secondary: #00f5ff;
-  --muted: #1a1a2e;
-  --border: #2d2d44;
-  --glow-color: #ff2d6d;
-  --card-bg: #151522;
+  --background: #ffffff;
+  --foreground: #171717;
+  --accent: #0a0a0a;
+  --accent-secondary: #525252;
+  --muted: #f4f4f5;
+  --border: #e4e4e7;
+  --card-bg: #fafafa;
+
+  /* Font variables */
+  --font-sans-cn: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  --font-sans-en: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-serif-cn: "Noto Serif SC", "Source Han Serif SC", "STSong", "SimSun", serif;
+  --font-serif-en: Georgia, "Times New Roman", serif;
+  --font-mono: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace;
+
+  /* Combined font stacks for optimal mixed Chinese-English display */
+  --font-body: var(--font-sans-en), var(--font-sans-cn), system-ui, sans-serif;
+  --font-heading: var(--font-sans-en), var(--font-sans-cn), system-ui, sans-serif;
+  --font-serif: var(--font-serif-en), var(--font-serif-cn), serif;
+  --font-code: var(--font-mono);
 }
 
 html[data-theme="dark"] {
-  --background: #0a0a0f;
-  --foreground: #e0e0ff;
-  --accent: #ff2d6d;
-  --accent-secondary: #00f5ff;
-  --muted: #1a1a2e;
-  --border: #2d2d44;
-  --glow-color: #ff2d6d;
-  --card-bg: #151522;
+  --background: #18181b;
+  --foreground: #fafafa;
+  --accent: #ffffff;
+  --accent-secondary: #a1a1aa;
+  --muted: #27272a;
+  --border: #3f3f46;
+  --card-bg: #1f1f23;
+
+  /* Font variables inherit from light theme */
 }
 
 @theme inline {
@@ -33,34 +46,113 @@ html[data-theme="dark"] {
   --color-accent-secondary: var(--accent-secondary);
   --color-muted: var(--muted);
   --color-border: var(--border);
-  --color-glow: var(--glow-color);
   --color-card-bg: var(--card-bg);
 }
 
 @layer base {
   * {
-    @apply border-border outline-accent/75;
-    scrollbar-width: auto;
-    scrollbar-color: var(--color-muted) transparent;
+    @apply border-border;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border) transparent;
   }
   html {
-    background: linear-gradient(180deg, #0a0a0f 0%, #1a1a2e 100%);
+    background: var(--background);
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-background font-mono text-foreground selection:bg-accent selection:text-background;
-    background-image:
-      radial-gradient(circle at 20% 50%, rgba(255, 45, 109, 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 80% 80%, rgba(0, 245, 255, 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 40% 20%, rgba(138, 43, 226, 0.05) 0%, transparent 50%);
-    position: relative;
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-body);
+    font-feature-settings: "kern" 1, "liga" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
     min-height: 100vh;
     overflow-x: hidden;
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+  }
+
+  /* Optimize Chinese characters specifically */
+  body {
+    font-variation-settings: "opsz" 16;
+  }
+
+  /* Better Chinese text rendering */
+  .zh {
+    font-family: var(--font-sans-cn), var(--font-sans-en), sans-serif;
+    line-height: 1.8;
+    letter-spacing: 0.02em;
+  }
+
+  /* Better English text rendering */
+  .en {
+    font-family: var(--font-sans-en), sans-serif;
+    line-height: 1.6;
+    letter-spacing: 0;
+  }
+
+  /* Heading optimizations */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+
+  /* Code optimizations */
+  code, pre {
+    font-family: var(--font-code);
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "liga" 1;
+  }
+
+  /* Specialized font classes */
+  .font-serif-content {
+    font-family: var(--font-serif);
+    line-height: 1.8;
+  }
+
+  /* Improve readability for long form content */
+  .readability-enhanced {
+    line-height: 1.8;
+    letter-spacing: 0.01em;
+    word-spacing: 0.05em;
+  }
+
+  /* Chinese typography specific optimizations */
+  .zh-hans {
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    line-height: 1.8;
+    letter-spacing: 0.02em;
+  }
+
+  .zh-hant {
+    font-family: "PingFang TC", "Hiragino Sans CNS", "Microsoft JhengHei", "WenQuanYi Micro Hei", sans-serif;
+    line-height: 1.8;
+    letter-spacing: 0.02em;
+  }
+
+  /* Japanese typography specific optimizations */
+  .ja {
+    font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+    line-height: 1.8;
+    letter-spacing: 0.02em;
+  }
+
+  /* Korean typography specific optimizations */
+  .ko {
+    font-family: "Apple SD Gothic Neo", "Nanum Gothic", "Malgun Gothic", sans-serif;
+    line-height: 1.8;
+    letter-spacing: 0.02em;
+  }
+  
+  ::selection {
+    @apply bg-foreground text-background;
   }
   
   a,
   button {
-    @apply outline-offset-1 outline-accent focus-visible:no-underline focus-visible:outline-2 focus-visible:outline-dashed;
+    @apply outline-offset-2 focus-visible:outline-2 focus-visible:outline-accent;
   }
   button:not(:disabled),
   [role="button"]:not(:disabled) {
@@ -68,92 +160,20 @@ html[data-theme="dark"] {
   }
   section,
   footer {
-    @apply mx-auto max-w-3xl px-4;
-  }
-  
-  /* Cyberpunk glitch effect for headings */
-  @keyframes glitch {
-    0% { transform: translate(0); }
-    20% { transform: translate(-1px, 1px); }
-    40% { transform: translate(-1px, -1px); }
-    60% { transform: translate(1px, 1px); }
-    80% { transform: translate(1px, -1px); }
-    100% { transform: translate(0); }
-  }
-  
-  .cyberpunk-title {
-    position: relative;
-    color: var(--color-accent);
-    text-shadow: 0 0 10px var(--color-glow);
-  }
-  
-  .cyberpunk-title::before,
-  .cyberpunk-title::after {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-  
-  .cyberpunk-title::before {
-    animation: glitch 2s infinite;
-    color: var(--color-accent-secondary);
-    z-index: -1;
-  }
-  
-  .cyberpunk-title::after {
-    animation: glitch 3s infinite;
-    color: #8a2be2;
-    z-index: -2;
-  }
-  
-  /* Neon border effect */
-  .neon-border {
-    position: relative;
-    border: 1px solid var(--color-border);
-    border-radius: 4px;
-    box-shadow: 
-      0 0 5px rgba(255, 45, 109, 0.5),
-      inset 0 0 5px rgba(255, 45, 109, 0.1);
-  }
-  
-  /* Scanning line effect */
-  .scan-line {
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .scan-line::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
-    animation: scan 3s infinite linear;
-  }
-  
-  @keyframes scan {
-    0% { top: 0; }
-    100% { top: 100%; }
+    @apply mx-auto max-w-2xl px-6;
   }
 }
 
 .active-nav {
-  @apply relative;
-  text-decoration: none;
+  @apply relative font-medium;
 }
 
 .active-nav::after {
   content: "";
   position: absolute;
-  bottom: -4px;
+  bottom: -2px;
   left: 0;
   width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, var(--color-accent), var(--color-accent-secondary));
-  box-shadow: 0 0 10px var(--color-accent);
+  height: 1px;
+  background: var(--foreground);
 }

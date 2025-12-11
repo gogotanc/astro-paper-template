@@ -9,8 +9,7 @@ draft: true
 tags:
   - color-schemes
 description:
-  Some of the well-crafted, predefined color schemes for AstroPaper blog
-  theme.
+  精心设计的 AstroPaper 主题配色方案集合，包含多种专业级颜色主题。从暗黑模式到明亮配色，轻松定制个性化的博客外观，提升用户阅读体验。
 ---
 
 I've crafted some predefined color schemes for this AstroPaper blog theme. You can replace these color schemes with the original ones.

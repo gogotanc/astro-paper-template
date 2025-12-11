@@ -11,7 +11,7 @@ tags:
   - Spring Cloud
   - Zuul
 description:
-  Spring Cloud 源码系列之 Zuul 网关源码分析。
+  全面解析 Spring Cloud Zuul 网关的源码实现，从请求路由机制到过滤器链处理。涵盖网关架构设计、负载均衡策略和自定义扩展，助你构建微服务体系中的智能网关。
 ---
 
 最近会有一些定制化 Zuul 网关的需求，所以看了一下 Zuul 的源码，写这篇文章记录一下。

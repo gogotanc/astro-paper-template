@@ -12,8 +12,7 @@ tags:
   - Styled-Components
   - TypeScript
 description:
-  "EXAMPLE POST: Developing a terminal-like website using ReactJS, TypeScript and Styled-Components.
-  Includes features like autocomplete, multiple themes, command hints etc."
+  "示例文章：使用 React、TypeScript 和 Styled-Components 开发终端风格网站。实现自动补全、主题切换、命令提示等高级功能，打造独特的交互式用户体验。"
 timezone: "Asia/Yangon"
 ---
 

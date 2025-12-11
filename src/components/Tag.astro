@@ -12,7 +12,7 @@ const { tag, tagName, size = "sm" } = Astro.props;
 
 <li
   class:list={[
-    "group inline-block group-hover:cursor-pointer",
+    "inline-block",
     size === "sm" ? "my-1" : "mx-1 my-3",
   ]}
 >
@@ -20,15 +20,15 @@ const { tag, tagName, size = "sm" } = Astro.props;
     href={`/tags/${tag}/`}
     transition:name={tag}
     class:list={[
-      "relative inline-flex items-center px-3 py-1 rounded-full border border-accent/30 text-accent hover:text-accent-secondary hover:border-accent-secondary/50 transition-all duration-300",
-      { "text-sm py-0.5 px-2": size === "sm" },
+      "inline-flex items-center px-2.5 py-1 rounded border border-border text-accent-secondary hover:text-foreground hover:border-foreground/30 transition-colors text-sm",
+      { "py-0.5 px-2 text-xs": size === "sm" },
     ]}
   >
     <IconHash
       class:list={[
-        "inline-block mr-1",
+        "inline-block mr-0.5",
         { "size-3": size === "sm" },
-        { "size-4": size === "lg" },
+        { "size-3.5": size === "lg" },
       ]}
     />
     <span>{tagName}</span>

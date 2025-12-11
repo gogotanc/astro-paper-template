@@ -86,15 +86,14 @@ const nextPost =
   <main
     id="main-content"
     class:list={[
-      "mx-auto w-full max-w-3xl px-4 pb-12 scan-line",
+      "mx-auto w-full max-w-2xl px-6 pb-12",
       { "mt-8": !SITE.showBackButton },
     ]}
     data-pagefind-body
   >
     <h1
       transition:name={slugifyStr(title)}
-      class="inline-block text-2xl font-bold text-accent sm:text-3xl cyberpunk-title"
-      data-text={title}
+      class="text-2xl font-semibold tracking-tight sm:text-3xl"
     >
       {title}
     </h1>
@@ -102,11 +101,11 @@ const nextPost =
       <Datetime {pubDatetime} {modDatetime} {timezone} size="lg" class="my-2 text-accent-secondary" />
       <EditPost class="max-sm:hidden" {hideEditPost} {post} />
     </div>
-    <article id="article" class="mx-auto prose mt-8 max-w-3xl">
+    <article id="article" class="mx-auto prose mt-8 max-w-2xl">
       <Content />
     </article>
 
-    <hr class="my-8 border-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent shadow-[0_0_10px_var(--color-accent)]" />
+    <hr class="my-8 border-border" />
 
     <EditPost class="sm:hidden" {hideEditPost} {post} />
 
@@ -121,27 +120,26 @@ const nextPost =
 
       <button
         id="back-to-top"
-        class="focus-outline py-1 whitespace-nowrap text-accent hover:text-accent-secondary transition-all duration-300"
+        class="py-1 whitespace-nowrap text-accent-secondary hover:text-foreground transition-colors text-sm"
       >
-        <IconChevronLeft class="inline-block rotate-90" />
+        <IconChevronLeft class="inline-block rotate-90" width={14} height={14} />
         <span>Back to Top</span>
       </button>
     </div>
 
-    <hr class="my-6 border-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent shadow-[0_0_10px_var(--color-accent)]" />
+    <hr class="my-6 border-border" />
 
-    <!-- Previous/Next Post Buttons -->
-    <div data-pagefind-ignore class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+    <div data-pagefind-ignore class="grid grid-cols-1 gap-4 sm:grid-cols-2">
       {
         prevPost && (
           <a
             href={`/posts/${prevPost.slug}`}
-            class="flex w-full gap-1 hover:text-accent-secondary transition-all duration-300 neon-border p-4 rounded"
+            class="flex w-full gap-2 p-4 rounded border border-border hover:bg-muted transition-colors"
           >
-            <IconChevronLeft class="inline-block flex-none" />
+            <IconChevronLeft class="inline-block flex-none mt-0.5" width={16} height={16} />
             <div>
-              <span>Previous Post</span>
-              <div class="text-sm text-accent">{prevPost.title}</div>
+              <span class="text-sm text-accent-secondary">Previous Post</span>
+              <div class="text-sm font-medium">{prevPost.title}</div>
             </div>
           </a>
         )
@@ -150,13 +148,13 @@ const nextPost =
         nextPost && (
           <a
             href={`/posts/${nextPost.slug}`}
-            class="flex w-full justify-end gap-1 text-right hover:text-accent-secondary transition-all duration-300 neon-border p-4 rounded sm:col-start-2"
+            class="flex w-full justify-end gap-2 text-right p-4 rounded border border-border hover:bg-muted transition-colors sm:col-start-2"
           >
             <div>
-              <span>Next Post</span>
-              <div class="text-sm text-accent">{nextPost.title}</div>
+              <span class="text-sm text-accent-secondary">Next Post</span>
+              <div class="text-sm font-medium">{nextPost.title}</div>
             </div>
-            <IconChevronRight class="inline-block flex-none" />
+            <IconChevronRight class="inline-block flex-none mt-0.5" width={16} height={16} />
           </a>
         )
       }
@@ -236,19 +234,20 @@ const nextPost =
     const codeBlocks = Array.from(document.querySelectorAll("pre"));
 
     for (const codeBlock of codeBlocks) {
+      // Skip if already wrapped
+      if (codeBlock.parentElement?.classList.contains("code-wrapper")) continue;
+
+      // Create wrapper div
       const wrapper = document.createElement("div");
-      wrapper.style.position = "relative";
-
-      const copyButton = document.createElement("button");
-      copyButton.className =
-        "copy-code absolute right-3 top-3 z-10 rounded bg-card-bg border border-border px-2 py-1 text-xs leading-4 text-foreground font-medium shadow-lg";
-      copyButton.innerHTML = copyButtonLabel;
-      codeBlock.setAttribute("tabindex", "0");
-      codeBlock.appendChild(copyButton);
-
-      // wrap codebock with relative parent element
-      codeBlock?.parentNode?.insertBefore(wrapper, codeBlock);
+      wrapper.className = "code-wrapper";
+      codeBlock.parentNode?.insertBefore(wrapper, codeBlock);
       wrapper.appendChild(codeBlock);
+
+      // Create copy button inside wrapper
+      const copyButton = document.createElement("button");
+      copyButton.className = "copy-code";
+      copyButton.textContent = copyButtonLabel;
+      wrapper.appendChild(copyButton);
 
       copyButton.addEventListener("click", async () => {
         await copyCode(codeBlock, copyButton);

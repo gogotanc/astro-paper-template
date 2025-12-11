@@ -22,36 +22,29 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
 
 <Layout>
   <Header />
-  <main id="main-content" data-layout="index" class="scan-line">
-    <section id="hero" class="pt-8 pb-6">
-      <div class="relative">
-        <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl cyberpunk-title" data-text="Tanctalk">
-          Tanctalk
-        </h1>
-      </div>
+  <main id="main-content" data-layout="index">
+    <section id="hero" class="pt-10 pb-8">
+      <h1 class="my-4 text-3xl font-semibold tracking-tight sm:my-6 sm:text-4xl">
+        Tanctalk
+      </h1>
       <a
         target="_blank"
         href="/rss.xml"
-        class="inline-block text-accent hover:text-accent-secondary transition-all duration-300"
+        class="inline-block text-foreground hover:opacity-70 transition-opacity"
         aria-label="rss feed"
         title="RSS Feed"
       >
-        <IconRss
-          width={20}
-          height={20}
-          class="scale-125"
-        />
+        <IconRss width={18} height={18} />
         <span class="sr-only">RSS Feed</span>
       </a>
 
-      <p class="text-foreground opacity-90 max-w-lg">
+      <p class="text-accent-secondary mt-4 max-w-lg">
         Hi there, this is tanc, welcome to my personal blog.
       </p>
       {
-        // only display if at least one social link is enabled
         SOCIALS.length > 0 && (
-          <div class="mt-4 flex flex-col sm:flex-row sm:items-center">
-            <div class="mr-2 mb-1 whitespace-nowrap sm:mb-0 text-accent-secondary">Social Links:</div>
+          <div class="mt-6 flex flex-col sm:flex-row sm:items-center">
+            <div class="mr-2 mb-1 whitespace-nowrap sm:mb-0 text-sm text-accent-secondary">Social Links:</div>
             <Socials />
           </div>
         )
@@ -63,15 +56,13 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
     {
       featuredPosts.length > 0 && (
         <>
-          <section id="featured" class="pt-12 pb-6">
-            <h2 class="text-2xl font-semibold tracking-wide text-accent-secondary cyberpunk-title" data-text="Featured">
+          <section id="featured" class="pt-10 pb-6">
+            <h2 class="text-xl font-medium tracking-tight">
               Featured
             </h2>
-            <ul class="mt-4 space-y-4">
+            <ul class="mt-4">
               {featuredPosts.map(data => (
-                <li class="neon-border">
-                  <Card variant="h3" {...data} />
-                </li>
+                <Card variant="h3" {...data} />
               ))}
             </ul>
           </section>
@@ -82,17 +73,15 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
 
     {
       recentPosts.length > 0 && (
-        <section id="recent-posts" class="pt-12 pb-6">
-          <h2 class="text-2xl font-semibold tracking-wide text-accent cyberpunk-title" data-text="Recent Posts">
+        <section id="recent-posts" class="pt-10 pb-6">
+          <h2 class="text-xl font-medium tracking-tight">
             Recent Posts
           </h2>
-          <ul class="mt-4 space-y-4">
+          <ul class="mt-4">
             {recentPosts.map(
               (data, index) =>
                 index < SITE.postPerIndex && (
-                  <li class="neon-border">
-                    <Card variant="h3" {...data} />
-                  </li>
+                  <Card variant="h3" {...data} />
                 )
             )}
           </ul>
@@ -100,10 +89,10 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
       )
     }
 
-    <div class="my-8 text-center">
-      <LinkButton href="/posts/" class="neon-border px-6 py-3 text-accent hover:text-accent-secondary transition-all duration-300">
+    <div class="my-10 text-center">
+      <LinkButton href="/posts/" class="inline-flex items-center px-4 py-2 text-sm border border-border rounded hover:bg-muted transition-colors">
         All Posts
-        <IconArrowRight class="inline-block ml-2" />
+        <IconArrowRight class="inline-block ml-2" width={14} height={14} />
       </LinkButton>
     </div>
   </main>

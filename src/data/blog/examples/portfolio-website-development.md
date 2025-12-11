@@ -11,8 +11,7 @@ tags:
   - HeadlessCMS
   - Blog
 description:
-  "EXAMPLE POST: My experience about developing my first portfolio website and a blog
-  using NextJS and a headless CMS."
+  "示例文章：使用 NextJS 和 Headless CMS 构建个人作品集和博客的完整实践。涵盖项目架构设计、性能优化和部署策略，为开发者提供现代化 Web 应用开发参考。"
 timezone: "Asia/Yangon"
 ---
 
