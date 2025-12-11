@@ -234,13 +234,20 @@ const nextPost =
     const codeBlocks = Array.from(document.querySelectorAll("pre"));
 
     for (const codeBlock of codeBlocks) {
-      // Skip if already has copy button
-      if (codeBlock.querySelector(".copy-code")) continue;
+      // Skip if already wrapped
+      if (codeBlock.parentElement?.classList.contains("code-wrapper")) continue;
 
+      // Create wrapper div
+      const wrapper = document.createElement("div");
+      wrapper.className = "code-wrapper";
+      codeBlock.parentNode?.insertBefore(wrapper, codeBlock);
+      wrapper.appendChild(codeBlock);
+
+      // Create copy button inside wrapper
       const copyButton = document.createElement("button");
       copyButton.className = "copy-code";
       copyButton.textContent = copyButtonLabel;
-      codeBlock.appendChild(copyButton);
+      wrapper.appendChild(copyButton);
 
       copyButton.addEventListener("click", async () => {
         await copyCode(codeBlock, copyButton);

@@ -3,30 +3,84 @@
 @layer base {
   .prose {
     @apply prose-headings:!mb-3 prose-headings:!text-foreground prose-p:!text-foreground prose-a:!text-foreground prose-a:underline prose-a:underline-offset-4 hover:prose-a:!text-accent-secondary prose-blockquote:!border-l-border prose-blockquote:!text-accent-secondary prose-figcaption:!text-accent-secondary prose-strong:!text-foreground prose-code:rounded prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:!text-foreground prose-code:before:!content-none prose-code:after:!content-none prose-ol:!text-foreground prose-ul:overflow-x-clip prose-ul:!text-foreground prose-li:marker:!text-accent-secondary prose-table:text-foreground prose-th:border prose-th:border-border prose-td:border prose-td:border-border prose-img:mx-auto prose-img:!my-4 prose-hr:!border-border;
+
+    /* Enhanced typography for mixed Chinese-English content */
+    font-family: var(--font-body);
+    font-feature-settings: "kern" 1, "liga" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
   .prose h1 {
     @apply text-3xl font-semibold tracking-tight;
+    font-family: var(--font-heading);
+    font-feature-settings: "kern" 1, "liga" 1;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
   }
   .prose h2 {
     @apply text-2xl font-semibold tracking-tight;
+    font-family: var(--font-heading);
+    font-feature-settings: "kern" 1, "liga" 1;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
   }
   .prose h3 {
     @apply text-xl font-medium;
+    font-family: var(--font-heading);
+    font-feature-settings: "kern" 1, "liga" 1;
+    letter-spacing: -0.005em;
+    line-height: 1.4;
   }
   .prose a {
     @apply break-words transition-colors duration-200;
+  }
+
+  /* Enhanced paragraph typography for Chinese-English mixed content */
+  .prose p {
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+    word-spacing: 0.05em;
+    margin-bottom: 1.2em;
+    text-align: justify;
+    text-justify: inter-ideograph;
+  }
+
+  /* Special handling for Chinese paragraphs */
+  .prose p:has([lang="zh"], .zh) {
+    line-height: 1.8;
+    letter-spacing: 0.02em;
+    text-align: justify;
+    text-justify: inter-ideograph;
+  }
+
+  /* Special handling for English paragraphs */
+  .prose p:has([lang="en"], .en) {
+    line-height: 1.6;
+    letter-spacing: 0;
+    text-align: left;
   }
   .prose blockquote {
     @apply bg-muted/50 px-4 py-2 border-l-2;
   }
   .prose code {
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-family: var(--font-code);
     font-size: 0.875em;
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "liga" 1, "kern" 1;
+    -webkit-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto;
   }
   .prose pre {
     @apply border border-border;
     padding-top: 1rem;
     border-radius: 0.5rem;
+    font-family: var(--font-code);
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "liga" 1, "kern" 1;
+    line-height: 1.5;
+    -webkit-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto;
   }
   .prose table {
     border-collapse: collapse;
@@ -108,10 +162,14 @@
     padding-top: 1rem !important;
   }
 
+  .code-wrapper {
+    position: relative;
+  }
+
   .copy-code {
-    position: absolute !important;
-    top: 0.5rem !important;
-    right: 0.5rem !important;
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
     z-index: 10;
     padding: 0.25rem 0.5rem;
     font-size: 0.75rem;
@@ -131,7 +189,7 @@
     background-color: var(--muted);
   }
   
-  pre:hover .copy-code {
+  .code-wrapper:hover .copy-code {
     opacity: 1;
   }
 }

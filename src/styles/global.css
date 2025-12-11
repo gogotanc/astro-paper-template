@@ -12,6 +12,19 @@ html[data-theme="light"] {
   --muted: #f4f4f5;
   --border: #e4e4e7;
   --card-bg: #fafafa;
+
+  /* Font variables */
+  --font-sans-cn: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  --font-sans-en: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-serif-cn: "Noto Serif SC", "Source Han Serif SC", "STSong", "SimSun", serif;
+  --font-serif-en: Georgia, "Times New Roman", serif;
+  --font-mono: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace;
+
+  /* Combined font stacks for optimal mixed Chinese-English display */
+  --font-body: var(--font-sans-en), var(--font-sans-cn), system-ui, sans-serif;
+  --font-heading: var(--font-sans-en), var(--font-sans-cn), system-ui, sans-serif;
+  --font-serif: var(--font-serif-en), var(--font-serif-cn), serif;
+  --font-code: var(--font-mono);
 }
 
 html[data-theme="dark"] {
@@ -22,6 +35,8 @@ html[data-theme="dark"] {
   --muted: #27272a;
   --border: #3f3f46;
   --card-bg: #1f1f23;
+
+  /* Font variables inherit from light theme */
 }
 
 @theme inline {
@@ -46,10 +61,89 @@ html[data-theme="dark"] {
   }
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: var(--font-body);
+    font-feature-settings: "kern" 1, "liga" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
     min-height: 100vh;
     overflow-x: hidden;
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+  }
+
+  /* Optimize Chinese characters specifically */
+  body {
+    font-variation-settings: "opsz" 16;
+  }
+
+  /* Better Chinese text rendering */
+  .zh {
+    font-family: var(--font-sans-cn), var(--font-sans-en), sans-serif;
+    line-height: 1.8;
+    letter-spacing: 0.02em;
+  }
+
+  /* Better English text rendering */
+  .en {
+    font-family: var(--font-sans-en), sans-serif;
     line-height: 1.6;
+    letter-spacing: 0;
+  }
+
+  /* Heading optimizations */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+
+  /* Code optimizations */
+  code, pre {
+    font-family: var(--font-code);
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "liga" 1;
+  }
+
+  /* Specialized font classes */
+  .font-serif-content {
+    font-family: var(--font-serif);
+    line-height: 1.8;
+  }
+
+  /* Improve readability for long form content */
+  .readability-enhanced {
+    line-height: 1.8;
+    letter-spacing: 0.01em;
+    word-spacing: 0.05em;
+  }
+
+  /* Chinese typography specific optimizations */
+  .zh-hans {
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    line-height: 1.8;
+    letter-spacing: 0.02em;
+  }
+
+  .zh-hant {
+    font-family: "PingFang TC", "Hiragino Sans CNS", "Microsoft JhengHei", "WenQuanYi Micro Hei", sans-serif;
+    line-height: 1.8;
+    letter-spacing: 0.02em;
+  }
+
+  /* Japanese typography specific optimizations */
+  .ja {
+    font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+    line-height: 1.8;
+    letter-spacing: 0.02em;
+  }
+
+  /* Korean typography specific optimizations */
+  .ko {
+    font-family: "Apple SD Gothic Neo", "Nanum Gothic", "Malgun Gothic", sans-serif;
+    line-height: 1.8;
+    letter-spacing: 0.02em;
   }
   
   ::selection {

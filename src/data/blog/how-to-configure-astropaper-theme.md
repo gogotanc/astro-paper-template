@@ -9,7 +9,7 @@ draft: true
 tags:
   - configuration
   - docs
-description: How you can make AstroPaper theme absolutely yours.
+description: 全面的 AstroPaper 主题配置指南，从基础设置到高级定制。掌握站点配置、SEO 优化、主题配色和功能扩展，打造专属于你的个人博客空间。
 ---
 
 AstroPaper is a highly customizable Astro blog theme. With AstroPaper, you can customize everything according to your personal taste. This article will explain how you can make some customizations easily in the config file.

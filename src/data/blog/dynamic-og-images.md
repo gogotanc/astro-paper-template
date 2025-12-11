@@ -9,7 +9,7 @@ draft: true
 tags:
   - docs
   - release
-description: New feature in AstroPaper v1.4.0, introducing dynamic OG image generation for blog posts.
+description: AstroPaper v1.4.0 新特性：动态 OG 图片生成功能详解。自动为每篇博客文章生成独特的社交媒体分享图片，提升品牌展示效果和用户点击率。
 ---
 
 New feature in AstroPaper v1.4.0, introducing dynamic OG image generation for blog posts.
